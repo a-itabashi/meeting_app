@@ -1,5 +1,8 @@
 {
   "name": "meeting_app",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1"
+  }
 }

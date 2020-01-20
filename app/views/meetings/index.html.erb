@@ -1,0 +1,8 @@
+<% @meetings.each do |meeting| %>
+  <div class="meeting-div">
+    <%= meeting.title %>
+    <%= meeting.content %>
+  </div>
+<% end %>
+
+<%= link_to "新規作成", new_meeting_path%>

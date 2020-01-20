@@ -1,0 +1,31 @@
+<h1>新規作成</h1>
+
+<%= form_with(model: @post, local: true, url: meetings_path) do |f| %>
+  <div class="form-group">
+    <%= f.text_field :title , class: 'form-control', placeholder: 'タイトルを入力してください' ,name: "meeting[title]" %>
+  </div>
+  <div class="form-group">
+    <div id='editor'>
+      <textarea name="meeting[content]" class="form-control" rows="20" v-model='input' debounce='50'></textarea>
+      <div v-html='input | marked'></div>
+    </div>
+  </div>
+  <%= f.submit "登録" %>
+<% end %>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js'></script>
+
+<script type="text/javascript">
+  window.onload = function() {
+    new Vue({
+      el: '#editor',
+      data: {
+        input: '<%== j @meeting.content %>',
+      },
+      filters: {
+        marked: marked,
+      },
+    });
+  };
+</script>
