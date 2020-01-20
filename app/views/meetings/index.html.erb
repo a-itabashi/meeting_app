@@ -2,7 +2,8 @@
   <div class="meeting-div">
     <%= meeting.title %>
     <%= meeting.content %>
+    <%= link_to "編集", edit_meeting_path(meeting), data: {"turbolinks" => false} %>
   </div>
 <% end %>
 
-<%= link_to "新規作成", new_meeting_path%>
+<%= link_to "新規作成", new_meeting_path , data: {"turbolinks" => false} %>
