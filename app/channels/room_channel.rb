@@ -1,6 +1,6 @@
 class RoomChannel < ApplicationCable::Channel
   def subscribed
-     stream_from "room_channel"
+    stream_from "room_channel"
   end
 
   def unsubscribed
@@ -9,11 +9,9 @@ class RoomChannel < ApplicationCable::Channel
 
   # ③
   def speak(data)
+    Meeting.find(data['instanceId']).update!(content: data['content'])
     meeting = Meeting.find(data['instanceId'])
-    meeting = meeting.update!(content: data['content'])
-
-    # ここがエラー
-    template = ApplicationController.renderer.render(partial: 'meetings/meeting')
+    template = ApplicationController.renderer.render(partial: 'meetings/meeting', locals: {meeting: meeting})
     ActionCable.server.broadcast 'room_channel' ,template
   end
 end

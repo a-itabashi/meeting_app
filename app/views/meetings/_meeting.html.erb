@@ -1,28 +1,24 @@
 <div id='editor'>
-  <textarea class="form-control" rows="10" id="chat-input" v-model='input' debounce='50'></textarea>
+  <textarea class="form-control" rows="10" id="chat-input" :value='input' @input="input = $event.target.value"  debounce='50'></textarea>
   <div v-html='input | marked'></div>
 </div>
 <div class="text-right">
   <button class="btn btn-primary btn-lg" id="chat-button">送信</button>
 </div>
-<div hidden>
-  <div id="instance-id"><%= @meeting.id %></div>
-</div>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js'></script>
 
-<script type="text/javascript">
+<script>
   window.onload = function() {
     let vm = new Vue({
       el: '#editor',
       data: {
-        input: '<%== j @meeting.content %>',
+        input: '<%== j meeting.content %>',
       },
       filters: {
         marked: marked,
       },
     });
-    // console.log(vm.$data.input);
   };
 </script>

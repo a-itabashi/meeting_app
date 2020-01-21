@@ -20,7 +20,10 @@ class MeetingsController < ApplicationController
     end
   end
 
-  def  show
+  def show
+  end
+
+  def edit
   end
 
   def update
